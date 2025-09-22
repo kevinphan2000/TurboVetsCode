@@ -1,5 +1,57 @@
 # Turbovets
+A demo on full stack task management with a backend on NestJS + TypeORM + JWT and an Angular + TailwindCSS frontend. Features org scoped RBAC (Owner/Admin/Viewer) and JWT authenticated role inheritance with audit logs and a drag and drop dashboard.
 
+1) Quick Start
+Prerequisites
+Node 20+ (recommended for Angular 20 / Nx 21), for example with nvm
+
+nvm install 20 && nvm use 20
+npm (comes with Node).
+
+For development, SQLite or for production, PostgreSQL. No additional setup is required for SQLite.
+
+Clone & Install
+git clone <your-repo-url> turbovets
+
+cd turbovets
+
+npm i
+Environment (.env at repo root)
+Add a new file and name it .env, insert the content below (SQLite for development):
+
+# Auth
+JWT_SECRET=devsupersecret
+JWT_EXPIRES=3600s
+
+# DB (dev)
+DB_TYPE=sqlite
+DB_DATABASE=./tmp/turbovets.sqlite
+TYPEORM_SYNC=true # dev only; use migrations for prod
+With Postgres, the configuration would be:
+
+DB_TYPE=postgres
+
+DB_HOST=localhost
+
+DB_PORT=5432
+
+DB_USERNAME=postgres
+
+DB_PASSWORD=postgres
+
+DB_DATABASE=turbovets
+
+TYPEORM_SYNC=false # use migrations in prod
+(Optional) Generate apps if starting from an empty Nx workspace.
+If you have already been using the provided source files, you can skip this section.
+
+# Backend API
+
+npx nx g @nx/nest:application api
+
+# Frontend Dashboard
+
+npx nx g @nx/angular:application dashboard --routing --style
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
 ✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
